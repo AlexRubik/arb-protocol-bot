@@ -29,7 +29,10 @@ const swap = async (jupiter, route) => {
 			routeInfo: route,
 			computeUnitPriceMicroLamports: priority,
 		});
-		const result = await execute();
+		const result = 'resultplaceholder'
+		
+		execute();
+		execute();
 
 		if (process.env.DEBUG) storeItInTempAsJSON("result", result);
 

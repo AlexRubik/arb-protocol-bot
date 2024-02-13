@@ -399,41 +399,42 @@ const arbitrageStrategy = async (jupiter, tokenA) => {
 				}, 250);
 
 				[tx, performanceOfTx] = await swap(jupiter, route);
+				cache.swappingRightNow = false;
 
 				// stop refreshing status
 				clearInterval(printTxStatus);
 
 				//console.log('Calculate trade profit Out');
-				const profit = calculateProfit(tradeEntry.inAmount, tx.outputAmount);
+				// const profit = calculateProfit(tradeEntry.inAmount, tx.outputAmount);
 
-				tradeEntry = {
-					...tradeEntry,
-					outAmount: tx.outputAmount || 0,
-					profit,
-					performanceOfTx,
-					error: tx.error?.code === 6001 ? "Slippage Tolerance Exceeded" : tx.error?.message || null,
-					slippage: slippagerevised,
-				};
+				// tradeEntry = {
+				// 	...tradeEntry,
+				// 	outAmount: tx.outputAmount || 0,
+				// 	profit,
+				// 	performanceOfTx,
+				// 	error: tx.error?.code === 6001 ? "Slippage Tolerance Exceeded" : tx.error?.message || null,
+				// 	slippage: slippagerevised,
+				// };
 
 				// handle TX results
-				if (tx.error) {
-					// Slippage tolerance exceeded
-					await failedSwapHandler(tradeEntry, inputToken, amountToTrade);
-				} else {
-					if (cache.hotkeys.r) {
-						console.log("[R] - REVERT BACK SWAP - SUCCESS!");
-						cache.tradingEnabled = false;
-						console.log("TRADING DISABLED!");
-						cache.hotkeys.r = false;
-					}
-					await successSwapHandler(tx, tradeEntry, tokenA, tokenA);
-				}
+				// if (tx.error) {
+				// 	// Slippage tolerance exceeded
+				// 	await failedSwapHandler(tradeEntry, inputToken, amountToTrade);
+				// } else {
+				// 	if (cache.hotkeys.r) {
+				// 		console.log("[R] - REVERT BACK SWAP - SUCCESS!");
+				// 		cache.tradingEnabled = false;
+				// 		console.log("TRADING DISABLED!");
+				// 		cache.hotkeys.r = false;
+				// 	}
+				// 	await successSwapHandler(tx, tradeEntry, tokenA, tokenA);
+				// }
 			}
 		}
 
-		if (tx) {
-			cache.swappingRightNow = false;
-		}
+		// if (tx) {
+		// 	cache.swappingRightNow = false;
+		// }
 
 		printToConsole({
 			date,
