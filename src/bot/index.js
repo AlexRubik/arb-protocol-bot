@@ -403,7 +403,7 @@ const arbitrageStrategy = async (jupiter, tokenA) => {
 				// stop refreshing status
 				clearInterval(printTxStatus);
 				cache.swappingRightNow = false;
-				const letsWait = await waitabit(200);
+				// const letsWait = await waitabit(100);
 
 				//console.log('Calculate trade profit Out');
 				// const profit = calculateProfit(tradeEntry.inAmount, tx.outputAmount);

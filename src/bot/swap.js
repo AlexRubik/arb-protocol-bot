@@ -32,7 +32,9 @@ const swap = async (jupiter, route) => {
 		const result = 'resultplaceholder'
 		
 		execute();
-		execute();
+		// execute();
+		// execute();
+
 
 
 		if (process.env.DEBUG) storeItInTempAsJSON("result", result);
