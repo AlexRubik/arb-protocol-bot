@@ -13,9 +13,6 @@ const waitabit = async (ms) => {
 		},ms)
 	})
   }
-  function delay(milliseconds) {
-    return new Promise(resolve => setTimeout(resolve, milliseconds));
-}
 
 const swap = async (jupiter, route) => {
 	try {
@@ -36,10 +33,7 @@ const swap = async (jupiter, route) => {
 		
 		execute();
 		execute();
-		execute();
-		execute();
-		execute();
-		await delay(300);
+
 
 		if (process.env.DEBUG) storeItInTempAsJSON("result", result);
 

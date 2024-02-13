@@ -399,10 +399,11 @@ const arbitrageStrategy = async (jupiter, tokenA) => {
 				}, 250);
 
 				[tx, performanceOfTx] = await swap(jupiter, route);
-				cache.swappingRightNow = false;
 
 				// stop refreshing status
 				clearInterval(printTxStatus);
+				cache.swappingRightNow = false;
+				const letsWait = await waitabit(200);
 
 				//console.log('Calculate trade profit Out');
 				// const profit = calculateProfit(tradeEntry.inAmount, tx.outputAmount);
